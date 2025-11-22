@@ -1,0 +1,13 @@
+package HR_tizimi;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class HrTizimiApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(HrTizimiApplication.class, args);
+	}
+
+}
