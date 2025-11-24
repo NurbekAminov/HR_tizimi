@@ -1,0 +1,24 @@
+package HR_tizimi.dto;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class ApiResponse {
+    private Boolean status;
+    private String message;
+    private Object data;
+
+    public ApiResponse(Boolean status, String message) {
+        this.status = status;
+        this.message = message;
+    }
+
+    public ApiResponse(Boolean status, Object data) {
+        this.status = status;
+        this.data = data;
+    }
+}
