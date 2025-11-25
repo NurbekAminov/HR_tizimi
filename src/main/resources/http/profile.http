@@ -2,46 +2,55 @@
 POST localhost:8080/auth/registration
 Content-Type:  application/json
 
-{ "name": "karim",
-  "surname": "karimov",
-  "username": "kar007",
+{ "name": "Vali",
+  "surname": "valiyev",
+  "username": "Val001",
   "password": "12345678"
 }
 
 ### Login
 POST localhost:8080/auth/login
 Content-Type:  application/json
-Authorization: Bearer
 
 {
-  "username": "kar007",
+  "username": "Val001",
   "password": "12345678"
 }
 
 ### Profile Create
 POST localhost:8080/profile/admin/create
 Content-Type:  application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwidXNlcm5hbWUiOiJWYWwwMDEiLCJzdWIiOiJWYWwwMDEiLCJpYXQiOjE3NjQwOTQ1MzAsImV4cCI6MTc2NDE4MDkzMH0.uc1TdjP7Y-qCHhxPeCvX40lFAS09D8NIVFghqn7LhCKVInaXbPTBbNsqpAPNO84ufkdE5qewPl1JAErBe7ZCyQ
 
-{ "name": "Vali",
-  "surname": "Valiyev",
-  "username": "Vali001",
+{ "name": "Toshmat",
+  "surname": "Toshmatov",
+  "username": "Toshmat001",
   "password": "12345678"
 }
 
 ### Profile update detail
-PUT localhost:8080/profile/user/update/detail/5
+PUT localhost:8080/profile/user/update/detail
 Content-Type:  application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwidXNlcm5hbWUiOiJrYXIwMDciLCJzdWIiOiJrYXIwMDciLCJpYXQiOjE3NjQwNzcyNTUsImV4cCI6MTc2NDE2MzY1NX0.knCRNtR1-pClpPgeDszNoxcipwvUD1UHER8OuGgz10XQZxSJcnTpKvqXh7AzStcKym5wa4KO73yAv91d1voYaw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwidXNlcm5hbWUiOiJrYXIwMDIiLCJzdWIiOiJrYXIwMDIiLCJpYXQiOjE3NjQwODcwNjYsImV4cCI6MTc2NDE3MzQ2Nn0.tKRbt1SB3O77WEnjtrnWq2UI8yfkc_xYdNSiWzc6SH8k0C1D2Dv5Z4mP6MUy6FL2X4vw0m_46HSabTZXnX0r6A
 
-{ "name": "Ali",
-  "surname": "Aliyev",
-  "username": "Ali001",
-  "password": "12345678"
+{ "name": "Karima",
+  "surname": "Karimova"
 }
 
+### Profile update username
+PUT localhost:8080/profile/user/update/username?username=karima002
+Content-Type:  application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwidXNlcm5hbWUiOiJrYXIwMDIiLCJzdWIiOiJrYXIwMDIiLCJpYXQiOjE3NjQwODg0MDQsImV4cCI6MTc2NDE3NDgwNH0.44s2oEWyzRNVOFEBuBmHBNV9xJh4Gmv7UgmCH14gld8LH_kHAlbBvflXu4aaijC54v-kkYxxejYv4R2sX4sZfQ
+
+### Profile update password
+PUT localhost:8080/profile/user/update/password?password=12345679
+Content-Type:  application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwidXNlcm5hbWUiOiJrYXIwMDUiLCJzdWIiOiJrYXIwMDUiLCJpYXQiOjE3NjQwODg4MTQsImV4cCI6MTc2NDE3NTIxNH0.YZF4YdPMqpGP8XrSEENFpA8cVwm1ICgZsPFDhSFa8uH0rO1bx7qoEB2W7ODBKXsZv4UwhHfpz-0_d8fqxjn77g
+
 ### Profile get datail
-GET localhost:8080/profile/user/get/detail/5
+GET localhost:8080/profile/user/get/detail
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwidXNlcm5hbWUiOiJWYWwwMDEiLCJzdWIiOiJWYWwwMDEiLCJpYXQiOjE3NjQwOTQ1MzAsImV4cCI6MTc2NDE4MDkzMH0.uc1TdjP7Y-qCHhxPeCvX40lFAS09D8NIVFghqn7LhCKVInaXbPTBbNsqpAPNO84ufkdE5qewPl1JAErBe7ZCyQ
 
 ### Profile Delete
-DELETE localhost:8080/profile/user/delete/5
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwidXNlcm5hbWUiOiJrYXIwMDciLCJzdWIiOiJrYXIwMDciLCJpYXQiOjE3NjQwNzcyNTUsImV4cCI6MTc2NDE2MzY1NX0.knCRNtR1-pClpPgeDszNoxcipwvUD1UHER8OuGgz10XQZxSJcnTpKvqXh7AzStcKym5wa4KO73yAv91d1voYaw
+DELETE localhost:8080/profile/user/delete
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwidXNlcm5hbWUiOiJrYXIwMDciLCJzdWIiOiJrYXIwMDciLCJpYXQiOjE3NjQwOTI3MzUsImV4cCI6MTc2NDE3OTEzNX0.u54vYUGRcNNDAuSgY6IgdTDMScAWdIbVQk1WKXXxDeb5sDCqGtDDJe6QHFQmT8Q7EwANa_1moMILT3-qAHYcdA

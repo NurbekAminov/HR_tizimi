@@ -20,12 +20,20 @@ public class ProfileController {
         return ResponseEntity.status(HttpStatus.CREATED).body(profileService.create(dto));
     }
 
-    @PutMapping(value = "/user/update/detail/{profileId}")
-    public ResponseEntity<ApiResponse> updateDetail(@PathVariable Integer profileId,
-                                                    @RequestBody ProfileDTO dto) {
-        return ResponseEntity.ok().body(profileService.updateDetail(profileId, dto));
+    @PutMapping(value = "/user/update/detail")
+    public ResponseEntity<ApiResponse> updateDetail(@RequestBody ProfileDTO dto) {
+        return ResponseEntity.ok().body(profileService.updateDetail(dto));
     }
 
+    @PutMapping(value = "/user/update/username")
+    public ResponseEntity<ApiResponse> updateUsername(@RequestParam("username") String username) {
+        return ResponseEntity.ok().body(profileService.updateUsername(username));
+    }
+
+    @PutMapping("/user/update/password")
+    public ResponseEntity<ApiResponse> changePassword(@RequestParam("password") String password){
+        return ResponseEntity.ok().body(profileService.changePassword(password));
+    }
 
     @PutMapping("/user/update-photo/{profileId}")
     public ResponseEntity<ApiResponse> updateAttach(@PathVariable Integer profileId,
@@ -33,24 +41,13 @@ public class ProfileController {
         return ResponseEntity.ok().body(profileService.updateAttach(profileId, dto));
     }
 
-    @GetMapping("/user/get/detail/{profileId}")
-    public ResponseEntity<ProfileDTO> getDetail(@PathVariable Integer profileId) {
-        return ResponseEntity.ok().body(profileService.getDetail(profileId));
+    @GetMapping("/user/get/detail")
+    public ResponseEntity<ProfileDTO> getDetail() {
+        return ResponseEntity.ok().body(profileService.getDetail());
     }
 
-    @DeleteMapping("/user/delete/{profileId}")
-    public ResponseEntity<ApiResponse> delete(@PathVariable Integer profileId){
-        return ResponseEntity.ok().body(profileService.delete(profileId));
+    @DeleteMapping("/user/delete")
+    public ResponseEntity<ApiResponse> delete(){
+        return ResponseEntity.ok().body(profileService.delete());
     }
-
-    /*@PutMapping(value = "/user/update/username/{profileId}")
-    public ResponseEntity<ApiResponse> updateUsername(@PathVariable Integer profileId,
-                                                      @RequestParam("username") String username) {
-        return ResponseEntity.ok().body(profileService.updateUsername(profileId, username));
-    }
-
-    @PutMapping("/user/update/password")
-    public ResponseEntity<ApiResponse> changePassword(@RequestParam("password") String password){
-        return ResponseEntity.ok().body(profileService.changePassword(password));
-    }*/
 }

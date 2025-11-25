@@ -1,5 +1,6 @@
 package HR_tizimi.entity;
 
+import HR_tizimi.enums.ProfilePosition;
 import HR_tizimi.enums.ProfileRole;
 import HR_tizimi.enums.ProfileStatus;
 import jakarta.persistence.*;
@@ -45,6 +46,10 @@ public class ProfileEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
     private ProfileRole role;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "position")
+    private ProfilePosition position;
 
     @Column(name = "prtId")
     private Integer prtId;
@@ -157,5 +162,13 @@ public class ProfileEntity {
 
     public void setPrtId(Integer prtId) {
         this.prtId = prtId;
+    }
+
+    public ProfilePosition getPosition() {
+        return position;
+    }
+
+    public void setPosition(ProfilePosition position) {
+        this.position = position;
     }
 }

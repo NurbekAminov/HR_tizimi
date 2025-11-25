@@ -53,10 +53,10 @@ public class SpringSecurityConfig {
             authorizationManagerRequestMatcherRegistry
                     .requestMatchers(AUTH_WHITELIST).permitAll()
                     .requestMatchers("/profile", "/profile/**").permitAll()
+                    .requestMatchers("/profile/admin/create").hasAnyRole("ADMIN")
                     .anyRequest()
                     .authenticated();
         }).addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
-        ;
 
         http.csrf(AbstractHttpConfigurer::disable);
         http.cors(httpSecurityCorsConfigurer -> {

@@ -13,42 +13,33 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class CustomUserDetails implements UserDetails {
-    private String name;
-    private String surname;
-    private String username;
-    private String password;
-    private ProfileRole role;
-    private ProfileStatus status;
+
+    private final ProfileEntity profile;
 
     public CustomUserDetails(ProfileEntity profile) {
-        this.name = profile.getName();
-        this.surname = profile.getName();
-        this.username = profile.getUsername();
-        this.password = profile.getPassword();
-        this.role = profile.getRole();
-        this.status = profile.getStatus();
+        this.profile = profile;
     }
 
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> roles = new ArrayList<>();
-        roles.add(new SimpleGrantedAuthority(role.name()));
+        roles.add(new SimpleGrantedAuthority(profile.getRole().name()));
 
         return roles;
     }
 
     @Override
-    public String getPassword() { return password; }
+    public String getPassword() { return profile.getPassword(); }
 
     @Override
-    public String getUsername() { return username; }
+    public String getUsername() { return profile.getUsername(); }
 
     @Override
     public boolean isAccountNonExpired() { return true; }
 
     @Override
-    public boolean isAccountNonLocked() { return status.equals(ProfileStatus.ACTIVE); }
+    public boolean isAccountNonLocked() { return profile.getStatus().equals(ProfileStatus.ACTIVE); }
 
     @Override
     public boolean isCredentialsNonExpired() { return true; }
@@ -56,17 +47,13 @@ public class CustomUserDetails implements UserDetails {
     @Override
     public boolean isEnabled() { return true; }
 
-    public ProfileRole getRole() { return role; }
+    public ProfileRole getRole() { return profile.getRole(); }
 
-    public String getName() { return name; }
+    public String getName() { return profile.getName(); }
 
-    public String getSurname() { return surname; }
+    public String getSurname() { return profile.getSurname(); }
 
-    public ProfileStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(ProfileStatus status) {
-        this.status = status;
+    public ProfileEntity getProfile() {
+        return profile;
     }
 }

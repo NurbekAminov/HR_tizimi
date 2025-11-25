@@ -5,6 +5,7 @@ import HR_tizimi.dto.AuthRequestDTO;
 import HR_tizimi.dto.AuthResponseDTO;
 import HR_tizimi.dto.ProfileDTO;
 import HR_tizimi.entity.ProfileEntity;
+import HR_tizimi.enums.ProfilePosition;
 import HR_tizimi.enums.ProfileRole;
 import HR_tizimi.enums.ProfileStatus;
 import HR_tizimi.mapper.ProfileMapper;
@@ -19,6 +20,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -60,6 +62,8 @@ public class AuthService {
         entity.setPassword(MD5Util.encode(dto.getPassword()));
         entity.setRole(ProfileRole.ROLE_USER);
         entity.setStatus(ProfileStatus.ACTIVE);
+        entity.setPosition(ProfilePosition.EMPLOYEE);
+        entity.setCreatedDate(LocalDateTime.now());
         profileRepository.save(entity);
 
 //        return new ApiResponse(true, "Registration completed");
