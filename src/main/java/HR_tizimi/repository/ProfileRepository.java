@@ -12,19 +12,19 @@ import java.util.Optional;
 
 @Repository
 public interface ProfileRepository extends JpaRepository<ProfileEntity, Integer> {
-    Optional<ProfileEntity> findByUsername(String username);
+    Optional<ProfileEntity> findByUsernameAndVisibleTrue(String username);
 
     @Transactional
     @Modifying
-    @Query("update ProfileEntity p set p.name =:name, p.surname =:surname where p.id =:id")
-    int updateDetail(@Param("id") Integer id, @Param("name") String name, @Param("surname") String surname);
+    @Query("update ProfileEntity p set p.name =:name, p.surname =:surname, p.username =:username, p.password =:password where p.id =:id")
+    int updateDetail(@Param("id") Integer id, @Param("name") String name, @Param("surname") String surname, @Param("username") String username, @Param("password") String password);
 
     @Transactional
     @Modifying
     @Query("update ProfileEntity p set p.photoId =:photoId, p.photoUrl =:photoUrl where p.id =:id")
     int updateAttach(@Param("id") Integer profileId, @Param("photoId") String PhotoId, @Param("photoUrl") String photpUrl);
 
-    @Transactional
+    /*@Transactional
     @Modifying
     @Query("update ProfileEntity p set p.username =:username where p.id =:id")
     int updateUsername(@Param("id") Integer id, @Param("username") String username);
@@ -32,5 +32,13 @@ public interface ProfileRepository extends JpaRepository<ProfileEntity, Integer>
     @Transactional
     @Modifying
     @Query("update ProfileEntity p set p.password =:password where p.id =:id")
-    int updatePassword(@Param("id") Integer id, @Param("password") String password);
+    int updatePassword(@Param("id") Integer id, @Param("password") String password);*/
+
+    @Query("from ProfileEntity p where p.id =:id and p.visible=true ")
+    Optional<ProfileEntity> getDetail(@Param("id") Integer id);
+
+    @Transactional
+    @Modifying
+    @Query("update ProfileEntity p set p.visible = false where p.id =: id")
+    int delete(@Param("id") Integer profileId);
 }

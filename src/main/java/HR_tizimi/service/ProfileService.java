@@ -1,6 +1,5 @@
 package HR_tizimi.service;
 
-import HR_tizimi.config.CustomUserDetails;
 import HR_tizimi.dto.ApiResponse;
 import HR_tizimi.dto.AttachDTO;
 import HR_tizimi.dto.ProfileDTO;
@@ -10,7 +9,6 @@ import HR_tizimi.enums.ProfileStatus;
 import HR_tizimi.mapper.ProfileMapper;
 import HR_tizimi.repository.ProfileRepository;
 import HR_tizimi.util.MD5Util;
-import HR_tizimi.util.SpringSecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +23,8 @@ public class ProfileService {
 
 
     public ApiResponse create(ProfileDTO dto) {
-        CustomUserDetails customUserDetails = SpringSecurityUtil.getCurrentUser();
-        Optional<ProfileEntity> profileByUsername = profileRepository.findByUsername(dto.getUsername());
+//        CustomUserDetails customUserDetails = SpringSecurityUtil.getCurrentUser();
+        Optional<ProfileEntity> profileByUsername = profileRepository.findByUsernameAndVisibleTrue(dto.getUsername());
         if (profileByUsername.isPresent()) {
             return new ApiResponse(false, "Username Alredy Exists");
         }
@@ -35,7 +33,7 @@ public class ProfileService {
         entity.setPassword(MD5Util.encode(dto.getPassword()));
         entity.setStatus(ProfileStatus.ACTIVE);
         entity.setRole(ProfileRole.ROLE_ADMIN);
-        entity.setPrtId(customUserDetails.getProfile().getId());
+//        entity.setPrtId(customUserDetails.getProfile().getId());
         profileRepository.save(entity);
 
         dto.setId(entity.getId());
@@ -47,17 +45,16 @@ public class ProfileService {
 
 
     public ApiResponse updateDetail(Integer profileId, ProfileDTO dto) {
-        int effectRows = profileRepository.updateDetail(profileId, dto.getName(), dto.getSurname());
+        dto.setPassword(MD5Util.encode(dto.getPassword()));
+        int effectRows = profileRepository.updateDetail(profileId, dto.getName(), dto.getSurname(), dto.getUsername(), dto.getPassword());
         if (effectRows == 0){
             return new ApiResponse(false, "Detail Not Updated");
         }
         return new ApiResponse(true, "Detail updated");
     }
 
-    public ApiResponse updateUserName(String username) {
-        CustomUserDetails customUserDetails = SpringSecurityUtil.getCurrentUser();
-        ProfileEntity profile = customUserDetails.getProfile();
-        int effectRows = profileRepository.updateUsername(profile.getId(), username);
+    /*public ApiResponse updateUsername(Integer profileId, String username) {
+        int effectRows = profileRepository.updateUsername(profileId, username);
         if (effectRows == 0){
             return new ApiResponse(false, "username not updated");
         }
@@ -72,13 +69,25 @@ public class ProfileService {
             return new ApiResponse(false, "Password not updated");
         }
         return new ApiResponse(true, "Password updated");
+    }*/
+
+    public ProfileDTO getDetail(Integer profileId) {
+//        CustomUserDetails customUserDetails = SpringSecurityUtil.getCurrentUser();
+        Optional<ProfileEntity> optionalProfile = profileRepository.getDetail(profileId);
+        if (optionalProfile.isEmpty()){
+            return null;
+        }
+        ProfileEntity entity = optionalProfile.get();
+        ProfileDTO dto = profileMapper.toDTO(entity);
+        return dto;
     }
 
-    public ApiResponse getDetail() {
-        CustomUserDetails customUserDetails = SpringSecurityUtil.getCurrentUser();
-        ProfileEntity entity = customUserDetails.getProfile();
-        ProfileDTO dto = profileMapper.toDTO(entity);
-        return new ApiResponse(true, dto);
+    public ApiResponse delete(Integer profileId) {
+        int effectRows = profileRepository.delete(profileId);
+        if (effectRows == 0){
+            return new ApiResponse(false, "Profile not deleted");
+        }
+        return new ApiResponse(true, "Profile deleted");
     }
 
     public ApiResponse updateAttach(Integer profileId, AttachDTO attachDTO) {

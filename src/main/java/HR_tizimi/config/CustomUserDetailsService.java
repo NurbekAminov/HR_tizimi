@@ -1,7 +1,6 @@
 package HR_tizimi.config;
 
 import HR_tizimi.entity.ProfileEntity;
-import HR_tizimi.exception.AppBadRequestException;
 import HR_tizimi.repository.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,14 +16,14 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private ProfileRepository profileRepository;
 
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<ProfileEntity> optional = profileRepository.findByUsername(username);
+        // username = login or phone or email
+        Optional<ProfileEntity> optional = profileRepository.findByUsernameAndVisibleTrue(username);
         if (optional.isEmpty()) {
-            throw new AppBadRequestException("Login or password wrong");
+            throw new UsernameNotFoundException(username);
         }
-        ProfileEntity profileEntity = optional.get();
-        return new CustomUserDetails(profileEntity);
+        ProfileEntity profile = optional.get();
+        return new CustomUserDetails(profile);
     }
 }

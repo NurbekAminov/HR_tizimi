@@ -1,0 +1,47 @@
+### Registration
+POST localhost:8080/auth/registration
+Content-Type:  application/json
+
+{ "name": "karim",
+  "surname": "karimov",
+  "username": "kar007",
+  "password": "12345678"
+}
+
+### Login
+POST localhost:8080/auth/login
+Content-Type:  application/json
+Authorization: Bearer
+
+{
+  "username": "kar007",
+  "password": "12345678"
+}
+
+### Profile Create
+POST localhost:8080/profile/admin/create
+Content-Type:  application/json
+
+{ "name": "Vali",
+  "surname": "Valiyev",
+  "username": "Vali001",
+  "password": "12345678"
+}
+
+### Profile update detail
+PUT localhost:8080/profile/user/update/detail/5
+Content-Type:  application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwidXNlcm5hbWUiOiJrYXIwMDciLCJzdWIiOiJrYXIwMDciLCJpYXQiOjE3NjQwNzcyNTUsImV4cCI6MTc2NDE2MzY1NX0.knCRNtR1-pClpPgeDszNoxcipwvUD1UHER8OuGgz10XQZxSJcnTpKvqXh7AzStcKym5wa4KO73yAv91d1voYaw
+
+{ "name": "Ali",
+  "surname": "Aliyev",
+  "username": "Ali001",
+  "password": "12345678"
+}
+
+### Profile get datail
+GET localhost:8080/profile/user/get/detail/5
+
+### Profile Delete
+DELETE localhost:8080/profile/user/delete/5
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwidXNlcm5hbWUiOiJrYXIwMDciLCJzdWIiOiJrYXIwMDciLCJpYXQiOjE3NjQwNzcyNTUsImV4cCI6MTc2NDE2MzY1NX0.knCRNtR1-pClpPgeDszNoxcipwvUD1UHER8OuGgz10XQZxSJcnTpKvqXh7AzStcKym5wa4KO73yAv91d1voYaw
