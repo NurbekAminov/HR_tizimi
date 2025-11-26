@@ -1,6 +1,7 @@
 package HR_tizimi.repository;
 
 import HR_tizimi.entity.BranchEntity;
+import HR_tizimi.entity.PositionEntity;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -11,21 +12,20 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface BranchRepository extends JpaRepository<BranchEntity, Integer> {
+public interface PositionRepository extends JpaRepository<PositionEntity, Integer> {
+    @Query("from PositionEntity p where p.name =:name and p.visible = true ")
+    Optional<PositionEntity> findByPositionName(@Param("name") String name);
 
-    @Query("from BranchEntity b where b.name =:name and b.visible = true ")
-    Optional<BranchEntity> findByBranchName(@Param("name") String name);
-
-    @Query("from BranchEntity b where b.id =:id and b.visible = true ")
-    Optional<BranchEntity> findByBranchId(@Param("id") Integer id);
+    @Query("from PositionEntity p where p.id =:id and p.visible = true ")
+    Optional<PositionEntity> findByPositionId(@Param("id") Integer id);
 
     @Transactional
     @Modifying
-    @Query("update BranchEntity b set b.name =:name, b.prtId =:prtId where b.id =:id")
+    @Query("update PositionEntity p set p.name =:name, p.prtId =:prtId where p.id =:id")
     int update(@Param("id") Integer id,@Param("name") String name, @Param("prtId") Integer prtId);
 
     @Transactional
     @Modifying
-    @Query("update BranchEntity b set b.visible = false, b.prtId =:prtId where b.id =:id")
+    @Query("update PositionEntity p set p.visible = false, p.prtId =:prtId where p.id =:id")
     int delete(@Param("id") Integer id, @Param("prtId") Integer prtId);
 }

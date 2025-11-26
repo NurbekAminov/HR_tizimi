@@ -9,23 +9,23 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
-@Table(name = "branch_profile")
-public class BranchProfileEntity {
+@Table(name = "Profile_Position")
+public class ProfilePositionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "profile_id", nullable = false)
+    @Column(name = "profileId", nullable = false)
     private Integer profileId;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "profile_id", insertable = false, updatable = false)
+    @JoinColumn(name = "profileId", insertable = false, updatable = false)
     private ProfileEntity profile;
 
-    @Column(name = "branch_id", nullable = false)
-    private Integer branchId;
+    @Column(name = "positionId", nullable = false)
+    private Integer positionId;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "branch_id", insertable = false, updatable = false)
-    private BranchEntity branch;
+    @JoinColumn(name = "positionId", insertable = false, updatable = false)
+    private PositionEntity position;
 
     @Column(name = "prtId")
     private Integer prtId;
@@ -33,7 +33,7 @@ public class BranchProfileEntity {
     @Column(name = "visible")
     private Boolean visible = Boolean.TRUE;
 
-    @Column(name = "created_date")
+    @Column(name = "createdDate")
     private LocalDateTime createdDate = LocalDateTime.now();
 
     public Integer getId() {
@@ -60,20 +60,20 @@ public class BranchProfileEntity {
         this.profile = profile;
     }
 
-    public Integer getBranchId() {
-        return branchId;
+    public Integer getPositionId() {
+        return positionId;
     }
 
-    public void setBranchId(Integer branchId) {
-        this.branchId = branchId;
+    public void setPositionId(Integer positionId) {
+        this.positionId = positionId;
     }
 
-    public BranchEntity getBranch() {
-        return branch;
+    public PositionEntity getPosition() {
+        return position;
     }
 
-    public void setBranch(BranchEntity branch) {
-        this.branch = branch;
+    public void setPosition(PositionEntity position) {
+        this.position = position;
     }
 
     public Integer getPrtId() {

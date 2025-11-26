@@ -14,6 +14,9 @@ import java.util.Optional;
 public interface ProfileRepository extends JpaRepository<ProfileEntity, Integer> {
     Optional<ProfileEntity> findByUsernameAndVisibleTrue(String username);
 
+    @Query("from ProfileEntity p where p.id =:id and p.visible = true ")
+    Optional<ProfileEntity> findByProfileId(@Param("id") Integer id);
+
     @Transactional
     @Modifying
     @Query("update ProfileEntity p set p.name =:name, p.surname =:surname where p.id =:id")

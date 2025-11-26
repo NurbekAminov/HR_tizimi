@@ -39,8 +39,6 @@ public class ProfileDTO {
     private ProfileRole role;
     @NotBlank(message = "Status required")
     private ProfileStatus status;
-    @NotBlank(message = "Position required")
-    private ProfilePosition position;
     private LocalDateTime createdDate;
 
     public Integer getId() {
@@ -121,13 +119,5 @@ public class ProfileDTO {
 
     public void setCreatedDate(LocalDateTime createdDate) {
         this.createdDate = createdDate;
-    }
-
-    public ProfilePosition getPosition() {
-        return position;
-    }
-
-    public void setPosition(ProfilePosition position) {
-        this.position = position;
     }
 }

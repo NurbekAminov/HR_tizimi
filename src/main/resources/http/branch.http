@@ -1,0 +1,37 @@
+### Branch Create
+POST localhost:8080/branch/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInVzZXJuYW1lIjoiQWxpMDAxIiwic3ViIjoiQWxpMDAxIiwiaWF0IjoxNzY0MTcxNDUxLCJleHAiOjE3NjQyNTc4NTF9.8DrjsGYtSTq5j0q0BTWcyQXA8VVEfgWawIFT_MlpRL4mBQBvZLfHEPNkJsoWmk3EJtowAvISS0KrqKSZcAzB6Q
+
+{
+  "name": "Quyi Bo'lim"
+}
+
+### Branch update
+PUT localhost:8080/branch/update
+Content-Type:  application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInVzZXJuYW1lIjoiQWxpMDAxIiwic3ViIjoiQWxpMDAxIiwiaWF0IjoxNzY0MTU4OTMzLCJleHAiOjE3NjQyNDUzMzN9.-CQjFLWEeZmnG8hsPeNxWBmA0EVUnYfGOGOVuAyvRVZVPmbl4sq2hJA1mvBmQSpoZXYRlbMoeciIjg0sojHfdA
+
+{
+  "id": 1,
+  "name": "Yuqori Bo'limi"
+}
+
+### Branch Delete
+DELETE localhost:8080/branch/delete
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInVzZXJuYW1lIjoiQWxpMDAxIiwic3ViIjoiQWxpMDAxIiwiaWF0IjoxNzY0MTU4OTMzLCJleHAiOjE3NjQyNDUzMzN9.-CQjFLWEeZmnG8hsPeNxWBmA0EVUnYfGOGOVuAyvRVZVPmbl4sq2hJA1mvBmQSpoZXYRlbMoeciIjg0sojHfdA
+Content-Type:  application/json
+
+{
+  "id": 1
+}
+
+### Branch subscribe
+POST localhost:8080/branch/join
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInVzZXJuYW1lIjoiQWxpMDAxIiwic3ViIjoiQWxpMDAxIiwiaWF0IjoxNzY0MTcxNDUxLCJleHAiOjE3NjQyNTc4NTF9.8DrjsGYtSTq5j0q0BTWcyQXA8VVEfgWawIFT_MlpRL4mBQBvZLfHEPNkJsoWmk3EJtowAvISS0KrqKSZcAzB6Q
+
+{
+  "profileId": 10,
+  "branchId": 3
+}

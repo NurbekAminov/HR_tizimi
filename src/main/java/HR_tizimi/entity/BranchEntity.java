@@ -67,4 +67,6 @@ public class BranchEntity {
     public void setCreatedDate(LocalDateTime createdDate) {
         this.createdDate = createdDate;
     }
+
+
 }

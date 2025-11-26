@@ -2,9 +2,9 @@
 POST localhost:8080/auth/registration
 Content-Type:  application/json
 
-{ "name": "Vali",
-  "surname": "valiyev",
-  "username": "Val001",
+{ "name": "Eshmat",
+  "surname": "Eshmatov",
+  "username": "Esh003",
   "password": "12345678"
 }
 
@@ -13,18 +13,18 @@ POST localhost:8080/auth/login
 Content-Type:  application/json
 
 {
-  "username": "Val001",
+  "username": "Ali001",
   "password": "12345678"
 }
 
 ### Profile Create
 POST localhost:8080/profile/admin/create
 Content-Type:  application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwidXNlcm5hbWUiOiJWYWwwMDEiLCJzdWIiOiJWYWwwMDEiLCJpYXQiOjE3NjQwOTQ1MzAsImV4cCI6MTc2NDE4MDkzMH0.uc1TdjP7Y-qCHhxPeCvX40lFAS09D8NIVFghqn7LhCKVInaXbPTBbNsqpAPNO84ufkdE5qewPl1JAErBe7ZCyQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInVzZXJuYW1lIjoiQWxpMDAxIiwic3ViIjoiQWxpMDAxIiwiaWF0IjoxNzY0MTcyNTE3LCJleHAiOjE3NjQyNTg5MTd9.RQwlSw75lM66VtJWrFH5mrMYIlGqUwaT_qEjdq-SO9lzNgakkJpJxNYo8u7dO_jLaA_b-MkdL4lWcDgdItwOIA
 
 { "name": "Toshmat",
   "surname": "Toshmatov",
-  "username": "Toshmat001",
+  "username": "Toshmat002",
   "password": "12345678"
 }
 
@@ -52,5 +52,19 @@ GET localhost:8080/profile/user/get/detail
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwidXNlcm5hbWUiOiJWYWwwMDEiLCJzdWIiOiJWYWwwMDEiLCJpYXQiOjE3NjQwOTQ1MzAsImV4cCI6MTc2NDE4MDkzMH0.uc1TdjP7Y-qCHhxPeCvX40lFAS09D8NIVFghqn7LhCKVInaXbPTBbNsqpAPNO84ufkdE5qewPl1JAErBe7ZCyQ
 
 ### Profile Delete
-DELETE localhost:8080/profile/user/delete
+DELETE localhost:8080/profile/delete
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwidXNlcm5hbWUiOiJrYXIwMDciLCJzdWIiOiJrYXIwMDciLCJpYXQiOjE3NjQwOTI3MzUsImV4cCI6MTc2NDE3OTEzNX0.u54vYUGRcNNDAuSgY6IgdTDMScAWdIbVQk1WKXXxDeb5sDCqGtDDJe6QHFQmT8Q7EwANa_1moMILT3-qAHYcdA
+
+### Profile Pagination
+GET http://localhost:8080/profile/admin/pagination?page=1&size=3
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInVzZXJuYW1lIjoiQWxpMDAxIiwic3ViIjoiQWxpMDAxIiwiaWF0IjoxNzY0MTcyNjA3LCJleHAiOjE3NjQyNTkwMDd9.bMuWLt4pBz9Tn55Z681xT-nOooTcvrFLGIXC544VeGrJGOSy0aE8R_phCYQSK4Li26A7ZWickpdkjDPDPSNwsA
+
+### Profile Filter
+POST http://localhost:8080/profile/admin/filter?page=1&size=10
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInVzZXJuYW1lIjoiQWxpMDAxIiwic3ViIjoiQWxpMDAxIiwiaWF0IjoxNzY0MTc4OTkxLCJleHAiOjE3NjQyNjUzOTF9.lCE4R7vTSwLZR3wA9d-OWDrjnyCmc06ZEBHNXjbH1ywgmY7sMlxWBMmywSSMaqfKPDNcGaIYd0Mak2sOr54s6A
+
+{
+  "position": "Menejer",
+  "branch": "O'rta Bo'lim"
+}

@@ -1,9 +1,6 @@
-package HR_tizimi.dto;
+package HR_tizimi.entity;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,18 +8,24 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class BranchDTO {
+@Entity
+@Table(name = "position")
+public class PositionEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank(message = "Name required")
-    @NotNull(message = "name is null")
-    @Size(min = 3, message = "Name should be minimum 3")
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "prtId")
     private Integer prtId;
 
-    private LocalDateTime createdDate;
+    @Column(name = "visible")
+    private Boolean visible = Boolean.TRUE;
+
+    @Column(name = "created_date")
+    private LocalDateTime createdDate = LocalDateTime.now();
 
     public Integer getId() {
         return id;
@@ -48,6 +51,14 @@ public class BranchDTO {
         this.prtId = prtId;
     }
 
+    public Boolean getVisible() {
+        return visible;
+    }
+
+    public void setVisible(Boolean visible) {
+        this.visible = visible;
+    }
+
     public LocalDateTime getCreatedDate() {
         return createdDate;
     }
@@ -55,5 +66,4 @@ public class BranchDTO {
     public void setCreatedDate(LocalDateTime createdDate) {
         this.createdDate = createdDate;
     }
-
 }

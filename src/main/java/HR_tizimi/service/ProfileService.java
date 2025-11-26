@@ -1,26 +1,33 @@
 package HR_tizimi.service;
 
 import HR_tizimi.config.CustomUserDetails;
-import HR_tizimi.dto.ApiResponse;
-import HR_tizimi.dto.AttachDTO;
-import HR_tizimi.dto.ProfileDTO;
+import HR_tizimi.dto.*;
 import HR_tizimi.entity.ProfileEntity;
 import HR_tizimi.enums.ProfilePosition;
 import HR_tizimi.enums.ProfileRole;
 import HR_tizimi.enums.ProfileStatus;
 import HR_tizimi.mapper.ProfileMapper;
+import HR_tizimi.repository.ProfileCustomRepository;
 import HR_tizimi.repository.ProfileRepository;
 import HR_tizimi.util.MD5Util;
 import HR_tizimi.util.SpringSecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class ProfileService {
     @Autowired
     private ProfileRepository profileRepository;
+    @Autowired
+    private ProfileCustomRepository profileCustomRepository;
     @Autowired
     private ProfileMapper profileMapper;
 
@@ -36,7 +43,6 @@ public class ProfileService {
         entity.setPassword(MD5Util.encode(dto.getPassword()));
         entity.setStatus(ProfileStatus.ACTIVE);
         entity.setRole(ProfileRole.ROLE_ADMIN);
-        entity.setPosition(ProfilePosition.HR);
         entity.setPrtId(customUserDetails.getProfile().getId());
         profileRepository.save(entity);
 
@@ -94,6 +100,36 @@ public class ProfileService {
             return new ApiResponse(false, "Profile not deleted");
         }
         return new ApiResponse(true, "Profile deleted");
+    }
+
+    public PageImpl<ProfileDTO> pagination(int page, int size){
+        PageRequest pageRequest = PageRequest.of(page, size, Sort.by("createdDate").ascending());
+        Page<ProfileEntity> result = profileRepository.findAll(pageRequest);
+
+        List<ProfileDTO> dtoList = new LinkedList<>();
+        for (ProfileEntity entity: result){
+            ProfileDTO dto = profileMapper.toDTO(entity);
+            dtoList.add(dto);
+        }
+
+        long total = result.getTotalElements();
+        return new PageImpl<>(dtoList, pageRequest, total);
+    }
+
+    public PageImpl<ProfileDTO> filterProfile(ProfileFilterDTO filter, int page, int size){
+        Page<ProfileEntity> result = profileCustomRepository.filter(filter, page, size);
+
+        long totalCount = result.getTotalElements();
+        List<ProfileEntity> entityList = result.getContent();
+
+        List<ProfileDTO> dtoList = new LinkedList<>();
+        for (ProfileEntity entity: entityList){
+            ProfileDTO dto = profileMapper.toDTO(entity);
+            dtoList.add(dto);
+        }
+
+        PageRequest pageRequest = PageRequest.of(page, size);
+        return new PageImpl<>(dtoList, pageRequest, totalCount);
     }
 
     public ApiResponse updateAttach(Integer profileId, AttachDTO attachDTO) {

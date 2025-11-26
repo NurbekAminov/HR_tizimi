@@ -3,8 +3,10 @@ package HR_tizimi.controller;
 import HR_tizimi.dto.ApiResponse;
 import HR_tizimi.dto.AttachDTO;
 import HR_tizimi.dto.ProfileDTO;
+import HR_tizimi.dto.ProfileFilterDTO;
 import HR_tizimi.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,12 +37,6 @@ public class ProfileController {
         return ResponseEntity.ok().body(profileService.changePassword(password));
     }
 
-    @PutMapping("/user/update-photo/{profileId}")
-    public ResponseEntity<ApiResponse> updateAttach(@PathVariable Integer profileId,
-                                                    @RequestBody AttachDTO dto) {
-        return ResponseEntity.ok().body(profileService.updateAttach(profileId, dto));
-    }
-
     @GetMapping("/user/get/detail")
     public ResponseEntity<ProfileDTO> getDetail() {
         return ResponseEntity.ok().body(profileService.getDetail());
@@ -49,5 +45,26 @@ public class ProfileController {
     @DeleteMapping("/user/delete")
     public ResponseEntity<ApiResponse> delete(){
         return ResponseEntity.ok().body(profileService.delete());
+    }
+
+
+    @GetMapping("/admin/pagination")
+    private ResponseEntity<PageImpl<ProfileDTO>> pagination(@RequestParam(value = "page", defaultValue = "1") int page,
+                                                            @RequestParam(value = "size", defaultValue = "10") int size){
+        return ResponseEntity.ok(profileService.pagination(page - 1, size));
+    }
+
+    @PostMapping("/admin/filter")
+    public ResponseEntity<PageImpl<ProfileDTO>> filter(@RequestParam(value = "page", defaultValue = "1") int page,
+                                                       @RequestParam(value = "size", defaultValue = "10") int size,
+                                                       @RequestBody ProfileFilterDTO filter) {
+        PageImpl<ProfileDTO> result = profileService.filterProfile(filter, page - 1, size);
+        return ResponseEntity.ok(result);
+    }
+
+    @PutMapping("/user/update-photo/{profileId}")
+    public ResponseEntity<ApiResponse> updateAttach(@PathVariable Integer profileId,
+                                                    @RequestBody AttachDTO dto) {
+        return ResponseEntity.ok().body(profileService.updateAttach(profileId, dto));
     }
 }

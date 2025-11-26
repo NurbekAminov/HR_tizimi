@@ -12,7 +12,6 @@ public class AuthResponseDTO {
     private String surname;
     private String username;
     private ProfileRole role;
-    private ProfilePosition position;
     private String jwtToken;
 
     public String getName() {

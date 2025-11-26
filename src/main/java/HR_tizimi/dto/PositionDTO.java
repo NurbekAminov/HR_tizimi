@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class BranchDTO {
+public class PositionDTO {
     private Integer id;
 
     @NotBlank(message = "Name required")
@@ -55,5 +55,4 @@ public class BranchDTO {
     public void setCreatedDate(LocalDateTime createdDate) {
         this.createdDate = createdDate;
     }
-
 }
