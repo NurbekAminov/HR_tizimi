@@ -7,6 +7,10 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInVzZXJuY
   "name": "Quyi Bo'lim"
 }
 
+### Branch get List
+GET localhost:8080/branch/get
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInVzZXJuYW1lIjoiQWxpMDAxIiwic3ViIjoiQWxpMDAxIiwiaWF0IjoxNzY0MjUwMzAyLCJleHAiOjE3NjQzMzY3MDJ9.B8_J6e2pSJtycX4Y3l0YJfRNCR6cPoyw5GndCbGXCi1juRocu_VC_KsGASP_PSYj_QMVCg9bRGYpbjERwbSn_A
+
 ### Branch update
 PUT localhost:8080/branch/update
 Content-Type:  application/json

@@ -3,7 +3,6 @@ package HR_tizimi.service;
 import HR_tizimi.config.CustomUserDetails;
 import HR_tizimi.dto.*;
 import HR_tizimi.entity.ProfileEntity;
-import HR_tizimi.enums.ProfilePosition;
 import HR_tizimi.enums.ProfileRole;
 import HR_tizimi.enums.ProfileStatus;
 import HR_tizimi.mapper.ProfileMapper;
@@ -53,6 +52,22 @@ public class ProfileService {
         return new ApiResponse(true, dto);
     }
 
+    public List<ProfileDTO> getAll() {
+        Optional<List<ProfileEntity>> optional = profileRepository.getProfileList();
+        if (optional.isEmpty()){
+            return null;
+        }
+
+        List<ProfileEntity> entityList = optional.get();
+
+        List<ProfileDTO> dtoList = new LinkedList<>();
+        for (ProfileEntity entity: entityList){
+            ProfileDTO dto = profileMapper.toDTO(entity);
+            dtoList.add(dto);
+        }
+
+        return dtoList;
+    }
 
     public ApiResponse updateDetail(ProfileDTO dto) {
         CustomUserDetails customUserDetails = SpringSecurityUtil.getCurrentUser();

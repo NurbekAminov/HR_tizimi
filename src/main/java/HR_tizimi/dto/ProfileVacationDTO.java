@@ -1,6 +1,8 @@
 package HR_tizimi.dto;
 
+import HR_tizimi.enums.VacationApplication;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -11,17 +13,22 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ProfilePositionDTO {
+public class ProfileVacationDTO {
     private Integer id;
 
     @NotBlank(message = "ProfileId required")
     @NotNull(message = "ProfileId is null")
     private Integer profileId;
     private ProfileDTO profileDTO;
-    @NotBlank(message = "positionId required")
-    @NotNull(message = "positionId is null")
-    private Integer positionId;
-    private PositionDTO positionDTO;
+    @NotBlank(message = "vacationId required")
+    @NotNull(message = "vacationId is null")
+    private Integer vacationId;
+    private VacationDTO vacationDTO;
+
+    private Integer balance;
+
+    private VacationApplication vacationApplication;
+
     private LocalDateTime createdDate;
 
     public Integer getId() {
@@ -48,20 +55,28 @@ public class ProfilePositionDTO {
         this.profileDTO = profileDTO;
     }
 
-    public Integer getPositionId() {
-        return positionId;
+    public Integer getVacationId() {
+        return vacationId;
     }
 
-    public void setPositionId(Integer positionId) {
-        this.positionId = positionId;
+    public void setVacationId(Integer vacationId) {
+        this.vacationId = vacationId;
     }
 
-    public PositionDTO getPositionDTO() {
-        return positionDTO;
+    public VacationDTO getVacationDTO() {
+        return vacationDTO;
     }
 
-    public void setPositionDTO(PositionDTO positionDTO) {
-        this.positionDTO = positionDTO;
+    public void setVacationDTO(VacationDTO vacationDTO) {
+        this.vacationDTO = vacationDTO;
+    }
+
+    public VacationApplication getVacationApplication() {
+        return vacationApplication;
+    }
+
+    public void setVacationApplication(VacationApplication vacationApplication) {
+        this.vacationApplication = vacationApplication;
     }
 
     public LocalDateTime getCreatedDate() {
@@ -70,5 +85,13 @@ public class ProfilePositionDTO {
 
     public void setCreatedDate(LocalDateTime createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public Integer getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Integer balance) {
+        this.balance = balance;
     }
 }

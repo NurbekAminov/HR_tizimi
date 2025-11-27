@@ -19,13 +19,14 @@ public class ProfileCustomRepository {
     @Autowired
     private EntityManager entityManager;
 
-    /*"select *\n" +
-            "from profile as p\n" +
-            "inner join Profile_Position as pp on pp.profile_id = p.id\n" +
-            "inner join Profile_Branch as pb on pb.profile_id = p.id\n" +
-            "where pp.position_id = ? and pb.branch_id = ? and pc.visible = true";*/
+    /*select p.name, p.surname, p.username, p.password from profile as p
+        inner join Profile_Position as pp on pp.profile_id = p.id
+        inner join Position as pos on pos.id = pp.position_id
+        inner join Profile_Branch as pb on pb.profile_id = p.id
+        inner join Branch as br on br.id = pb.branch_id
+        where br.name = 'O`rta Bo`lim' and p.visible = true*/
 
-    public Page<ProfileEntity> filter(ProfileFilterDTO filter, int page, int size){
+    public Page<ProfileEntity> filter(ProfileFilterDTO filter, int page, int size) {
         Map<String, Object> params = new HashMap<>();
         StringBuilder select = new StringBuilder(
                 "SELECT DISTINCT p FROM ProfileEntity p, ProfilePositionEntity pp, PositionEntity pos, " +

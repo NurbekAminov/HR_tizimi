@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ProfileBranchDTO {
-    private String id;
+    private Integer id;
 
     @NotBlank(message = "ProfileId required")
     @NotNull(message = "ProfileId is null")
@@ -26,11 +26,11 @@ public class ProfileBranchDTO {
 
     private Boolean visible;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

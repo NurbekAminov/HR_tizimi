@@ -1,6 +1,5 @@
 package HR_tizimi.dto;
 
-import HR_tizimi.enums.ProfilePosition;
 import HR_tizimi.enums.ProfileRole;
 import lombok.Getter;
 import lombok.Setter;

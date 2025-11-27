@@ -1,0 +1,57 @@
+### vacation Create
+POST localhost:8080/vacation/admin/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInVzZXJuYW1lIjoiQWxpMDAxIiwic3ViIjoiQWxpMDAxIiwiaWF0IjoxNzY0MjM4NDkyLCJleHAiOjE3NjQzMjQ4OTJ9.R7AxxyOTJIklDeT1cDBpC9h8pt-hXBbTDGURrHdZNvxm1CcMoypr4zgvZmvJ1va-jkAWoLNlxwmJBLzIc18PGA
+
+{
+  "name": "kasallik",
+  "balance": 7
+}
+
+### vacation get List
+GET localhost:8080/vacation/admin/get/all
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInVzZXJuYW1lIjoiQWxpMDAxIiwic3ViIjoiQWxpMDAxIiwiaWF0IjoxNzY0MjUyOTQ1LCJleHAiOjE3NjQzMzkzNDV9.Q2_CkDI_uQSogjvZQQqYpPuECbEjX3BgMdRfA4b9KYeZARbn-i745url4fEwM6fGooKfj-ME-REd6dUrXwagHw
+
+### vacation name update
+PUT localhost:8080/vacation/admin/update/name
+Content-Type:  application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwidXNlcm5hbWUiOiJWYWxpMDAxIiwic3ViIjoiVmFsaTAwMSIsImlhdCI6MTc2NDIyOTc5MiwiZXhwIjoxNzY0MzE2MTkyfQ.24cYW9k_p1V38v_0wgk3CHHwj9EsR3AuWHJHGNnFS659QPqd34YbBFQSQzJYMkkqlS2QYYOaoWxJoUuuvAyW8A
+
+{
+  "id": 1,
+  "name": "Yillik tatil"
+}
+
+### vacation status update
+PUT localhost:8080/vacation/admin/update/status
+Content-Type:  application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInVzZXJuYW1lIjoiQWxpMDAxIiwic3ViIjoiQWxpMDAxIiwiaWF0IjoxNzY0MjM5NTA3LCJleHAiOjE3NjQzMjU5MDd9.G7m6wgi_DHgYFqzZ-oXQ-_XbnSu56nhL24JwsDj6c552AQBP9DbekhoT_CJK5dn7t9rzxHQ1mircKxJC4eRhPg
+
+{
+  "profileId": 3,
+  "vacationId": 2
+}
+
+### vacation Delete
+DELETE localhost:8080/vacation/admin/delete
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInVzZXJuYW1lIjoiQWxpMDAxIiwic3ViIjoiQWxpMDAxIiwiaWF0IjoxNzY0MjMyMjYzLCJleHAiOjE3NjQzMTg2NjN9.Wv4jle8CtyKu_ezsk9ICjCabfF_uPKuoXhjoP6j8k1oE2p3nDhkg1-Z5JXoIAx5JMr681WiUW3zvr9LSE4FzTw
+Content-Type:  application/json
+
+{
+  "id": 1
+}
+
+### vacation subscribe
+POST localhost:8080/vacation/user/join
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwidXNlcm5hbWUiOiJWYWxpMDAyIiwic3ViIjoiVmFsaTAwMiIsImlhdCI6MTc2NDIzODYyNSwiZXhwIjoxNzY0MzI1MDI1fQ.4Mqjl2OQ0rzvZKVX_1ZvTNpL1pRnBcSyyAHdvLuo9txsexcqyxhQm_qsii0dBl1B571IDIxjzB-I0T-h8dJq6g
+
+{
+  "vacationId": 2
+}
+
+### vacation get balance
+GET localhost:8080/vacation/user/get/balace
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwidXNlcm5hbWUiOiJWYWxpMDAyIiwic3ViIjoiVmFsaTAwMiIsImlhdCI6MTc2NDIzOTQ4MCwiZXhwIjoxNzY0MzI1ODgwfQ.lwxMybkl00FHali-fEY6Op6XuPtqhUjFGrK13rP_waw6jKOLWYVv17GHarYItErRM3YhEK0PV3ytI7Z1Mk2EhA

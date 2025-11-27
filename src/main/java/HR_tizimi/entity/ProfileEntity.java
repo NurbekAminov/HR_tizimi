@@ -1,6 +1,5 @@
 package HR_tizimi.entity;
 
-import HR_tizimi.enums.ProfilePosition;
 import HR_tizimi.enums.ProfileRole;
 import HR_tizimi.enums.ProfileStatus;
 import jakarta.persistence.*;

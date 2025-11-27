@@ -1,6 +1,5 @@
 package HR_tizimi.dto;
 
-import HR_tizimi.enums.ProfilePosition;
 import HR_tizimi.enums.ProfileRole;
 import HR_tizimi.enums.ProfileStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;

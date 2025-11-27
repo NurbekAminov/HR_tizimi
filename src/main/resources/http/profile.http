@@ -1,22 +1,3 @@
-### Registration
-POST localhost:8080/auth/registration
-Content-Type:  application/json
-
-{ "name": "Eshmat",
-  "surname": "Eshmatov",
-  "username": "Esh003",
-  "password": "12345678"
-}
-
-### Login
-POST localhost:8080/auth/login
-Content-Type:  application/json
-
-{
-  "username": "Ali001",
-  "password": "12345678"
-}
-
 ### Profile Create
 POST localhost:8080/profile/admin/create
 Content-Type:  application/json
@@ -27,6 +8,10 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInVzZXJuY
   "username": "Toshmat002",
   "password": "12345678"
 }
+
+### Profile get List
+GET localhost:8080/profile/admin/get/all
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInVzZXJuYW1lIjoiQWxpMDAxIiwic3ViIjoiQWxpMDAxIiwiaWF0IjoxNzY0MjQwOTk4LCJleHAiOjE3NjQzMjczOTh9.7DPZEqSC1yP9nVNyoHFxW-6Qeu85wt71_q2BTXhBBpqqFA-g6D5mtOpq2tAE7UT-nH0VpIMNi0bWLDWr04ivHw
 
 ### Profile update detail
 PUT localhost:8080/profile/user/update/detail
@@ -43,9 +28,9 @@ Content-Type:  application/json
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwidXNlcm5hbWUiOiJrYXIwMDIiLCJzdWIiOiJrYXIwMDIiLCJpYXQiOjE3NjQwODg0MDQsImV4cCI6MTc2NDE3NDgwNH0.44s2oEWyzRNVOFEBuBmHBNV9xJh4Gmv7UgmCH14gld8LH_kHAlbBvflXu4aaijC54v-kkYxxejYv4R2sX4sZfQ
 
 ### Profile update password
-PUT localhost:8080/profile/user/update/password?password=12345679
+PUT localhost:8080/profile/user/update/password?password=12345678
 Content-Type:  application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwidXNlcm5hbWUiOiJrYXIwMDUiLCJzdWIiOiJrYXIwMDUiLCJpYXQiOjE3NjQwODg4MTQsImV4cCI6MTc2NDE3NTIxNH0.YZF4YdPMqpGP8XrSEENFpA8cVwm1ICgZsPFDhSFa8uH0rO1bx7qoEB2W7ODBKXsZv4UwhHfpz-0_d8fqxjn77g
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwidXNlcm5hbWUiOiJWYWxpMDAyIiwic3ViIjoiVmFsaTAwMiIsImlhdCI6MTc2NDIzOTA5MiwiZXhwIjoxNzY0MzI1NDkyfQ.s2rmlC7x1-ulPxowCXeQYPGgK0LZxQ9RX8GDsQm_pD87BtEn3sm5VOPSaECUBYyi0OSv9fBUKcN0w-ZX35yqHg
 
 ### Profile get datail
 GET localhost:8080/profile/user/get/detail

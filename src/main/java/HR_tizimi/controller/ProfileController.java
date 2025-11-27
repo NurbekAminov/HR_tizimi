@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/profile")
 public class ProfileController {
@@ -47,6 +49,10 @@ public class ProfileController {
         return ResponseEntity.ok().body(profileService.delete());
     }
 
+    @GetMapping("/admin/get/all")
+    private ResponseEntity<List<ProfileDTO>> getAll(){
+        return ResponseEntity.ok().body(profileService.getAll());
+    }
 
     @GetMapping("/admin/pagination")
     private ResponseEntity<PageImpl<ProfileDTO>> pagination(@RequestParam(value = "page", defaultValue = "1") int page,

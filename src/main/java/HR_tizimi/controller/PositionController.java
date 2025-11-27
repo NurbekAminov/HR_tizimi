@@ -1,12 +1,13 @@
 package HR_tizimi.controller;
 
 import HR_tizimi.dto.*;
-import HR_tizimi.service.BranchService;
 import HR_tizimi.service.PositionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/position")
@@ -19,9 +20,14 @@ public class PositionController {
         return ResponseEntity.status(HttpStatus.CREATED).body(positionService.create(dto));
     }
 
+    @GetMapping("/get")
+    private ResponseEntity<List<PositionDTO>> get(){
+        return ResponseEntity.ok().body(positionService.get());
+    }
+
     @PutMapping(value = "/update")
-    public ResponseEntity<ApiResponse> update(@RequestBody PositionDTO dto) {
-        return ResponseEntity.ok().body(positionService.update(dto));
+    public ResponseEntity<ApiResponse> updateName(@RequestBody PositionDTO dto) {
+        return ResponseEntity.ok().body(positionService.updateName(dto));
     }
 
     @DeleteMapping("/delete")

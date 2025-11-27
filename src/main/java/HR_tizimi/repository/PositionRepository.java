@@ -1,6 +1,5 @@
 package HR_tizimi.repository;
 
-import HR_tizimi.entity.BranchEntity;
 import HR_tizimi.entity.PositionEntity;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -28,4 +28,6 @@ public interface PositionRepository extends JpaRepository<PositionEntity, Intege
     @Modifying
     @Query("update PositionEntity p set p.visible = false, p.prtId =:prtId where p.id =:id")
     int delete(@Param("id") Integer id, @Param("prtId") Integer prtId);
+    @Query("from PositionEntity p where p.visible = true ")
+    Optional<List<PositionEntity>> getProfileList();
 }

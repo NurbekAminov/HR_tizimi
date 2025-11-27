@@ -3,12 +3,15 @@ package HR_tizimi.service;
 import HR_tizimi.config.CustomUserDetails;
 import HR_tizimi.dto.*;
 import HR_tizimi.entity.*;
+import HR_tizimi.mapper.PositionMapper;
 import HR_tizimi.repository.*;
 import HR_tizimi.util.SpringSecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,6 +22,8 @@ public class PositionService {
     private ProfileRepository profileRepository;
     @Autowired
     private ProfilePositionRepository profilePositionRepository;
+    @Autowired
+    private PositionMapper positionMapper;
 
     public PositionDTO create(PositionDTO dto){
         Optional<PositionEntity> optional = positionRepository.findByPositionName(dto.getName());
@@ -40,14 +45,31 @@ public class PositionService {
         return dto;
     }
 
-    public ApiResponse update(PositionDTO dto){
+    public List<PositionDTO> get() {
+        Optional<List<PositionEntity>> optional = positionRepository.getProfileList();
+        if (optional.isEmpty()){
+            return null;
+        }
+
+        List<PositionEntity> entityList = optional.get();
+
+        List<PositionDTO> dtoList = new LinkedList<>();
+        for (PositionEntity entity: entityList){
+            PositionDTO dto = positionMapper.toPositionDTO(entity);
+            dtoList.add(dto);
+        }
+
+        return dtoList;
+    }
+
+    public ApiResponse updateName(PositionDTO dto){
         Optional<PositionEntity> byId = positionRepository.findByPositionId(dto.getId());
         if (byId.isEmpty()){
             return null;
         }
 
-        Optional<PositionEntity> byName = positionRepository.findByPositionName(dto.getName());
-        if (byName.isPresent()){
+        Optional<PositionEntity> newName = positionRepository.findByPositionName(dto.getName());
+        if (newName.isPresent()){
             return null;
         }
 
@@ -74,8 +96,8 @@ public class PositionService {
     }
 
     public ApiResponse join(ProfilePositionDTO dto){
-        Optional<PositionEntity> branch = positionRepository.findByPositionId(dto.getPositionId());
-        if (branch.isEmpty()){
+        Optional<PositionEntity> position = positionRepository.findByPositionId(dto.getPositionId());
+        if (position.isEmpty()){
             return new ApiResponse(false, "Position not exist");
         }
 
@@ -85,8 +107,8 @@ public class PositionService {
         }
 
 
-        Optional<ProfilePositionEntity> branchProfile = profilePositionRepository.findByPositionIdAndProfileId(dto.getPositionId(), dto.getProfileId());
-        if (branchProfile.isPresent()){
+        Optional<ProfilePositionEntity> positionProfile = profilePositionRepository.findByPositionIdAndProfileId(dto.getPositionId(), dto.getProfileId());
+        if (positionProfile.isPresent()){
             return new ApiResponse(false, "Profile already exist in Position");
         }
 
@@ -101,6 +123,5 @@ public class PositionService {
         profilePositionRepository.save(profilePositionEntity);
         return new ApiResponse(true, "Profile subscribed to Position");
     }
-
 
 }

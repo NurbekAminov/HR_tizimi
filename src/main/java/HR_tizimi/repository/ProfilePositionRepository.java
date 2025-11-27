@@ -1,6 +1,5 @@
 package HR_tizimi.repository;
 
-import HR_tizimi.entity.ProfileBranchEntity;
 import HR_tizimi.entity.ProfilePositionEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

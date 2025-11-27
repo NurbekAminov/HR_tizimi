@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -28,4 +29,6 @@ public interface BranchRepository extends JpaRepository<BranchEntity, Integer> {
     @Modifying
     @Query("update BranchEntity b set b.visible = false, b.prtId =:prtId where b.id =:id")
     int delete(@Param("id") Integer id, @Param("prtId") Integer prtId);
+    @Query("from BranchEntity b where b.visible = true ")
+    Optional<List<BranchEntity>> getBranchList();
 }

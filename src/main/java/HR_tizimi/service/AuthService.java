@@ -5,7 +5,6 @@ import HR_tizimi.dto.AuthRequestDTO;
 import HR_tizimi.dto.AuthResponseDTO;
 import HR_tizimi.dto.ProfileDTO;
 import HR_tizimi.entity.ProfileEntity;
-import HR_tizimi.enums.ProfilePosition;
 import HR_tizimi.enums.ProfileRole;
 import HR_tizimi.enums.ProfileStatus;
 import HR_tizimi.mapper.ProfileMapper;

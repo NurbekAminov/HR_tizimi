@@ -7,6 +7,7 @@ import HR_tizimi.dto.ProfileBranchDTO;
 import HR_tizimi.entity.BranchEntity;
 import HR_tizimi.entity.ProfileBranchEntity;
 import HR_tizimi.entity.ProfileEntity;
+import HR_tizimi.mapper.BranchMapper;
 import HR_tizimi.repository.ProfileBranchRepository;
 import HR_tizimi.repository.BranchRepository;
 import HR_tizimi.repository.ProfileRepository;
@@ -15,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -25,6 +28,8 @@ public class BranchService {
     private ProfileRepository profileRepository;
     @Autowired
     private ProfileBranchRepository profileBranchRepository;
+    @Autowired
+    private BranchMapper branchMapper;
 
     public BranchDTO create(BranchDTO dto){
         Optional<BranchEntity> optional = branchRepository.findByBranchName(dto.getName());
@@ -46,14 +51,31 @@ public class BranchService {
         return dto;
     }
 
-    public ApiResponse update(BranchDTO dto){
+    public List<BranchDTO> get() {
+        Optional<List<BranchEntity>> optional = branchRepository.getBranchList();
+        if (optional.isEmpty()){
+            return null;
+        }
+
+        List<BranchEntity> entityList = optional.get();
+
+        List<BranchDTO> dtoList = new LinkedList<>();
+        for (BranchEntity entity: entityList){
+            BranchDTO dto = branchMapper.toBranchDTO(entity);
+            dtoList.add(dto);
+        }
+
+        return dtoList;
+    }
+
+    public ApiResponse updateName(BranchDTO dto){
         Optional<BranchEntity> byId = branchRepository.findByBranchId(dto.getId());
         if (byId.isEmpty()){
             return null;
         }
 
-        Optional<BranchEntity> byName = branchRepository.findByBranchName(dto.getName());
-        if (byName.isPresent()){
+        Optional<BranchEntity> newName = branchRepository.findByBranchName(dto.getName());
+        if (newName.isPresent()){
             return null;
         }
 
@@ -110,5 +132,4 @@ public class BranchService {
     public ProfileBranchDTO FilterProfileByBranchAndPosition(){
         return null;
     }
-
 }

@@ -53,9 +53,9 @@ public class SpringSecurityConfig {
             authorizationManagerRequestMatcherRegistry
                     .requestMatchers(AUTH_WHITELIST).permitAll()
                     .requestMatchers("/profile/admin/**").hasAnyRole("ADMIN")
-                    .requestMatchers("/profile", "/profile/**").permitAll()
                     .requestMatchers("/branch", "/branch/**").hasAnyRole("ADMIN")
                     .requestMatchers("/position", "/position/**").hasAnyRole("ADMIN")
+                    .requestMatchers("/vacation/admin/**").hasAnyRole("ADMIN")
                     .anyRequest()
                     .authenticated();
         }).addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
