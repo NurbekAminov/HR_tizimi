@@ -1,9 +1,6 @@
 package HR_tizimi.controller;
 
-import HR_tizimi.dto.ApiResponse;
-import HR_tizimi.dto.WorkTimeDisruptionDTO;
-import HR_tizimi.dto.WorkTimeHistoryDTO;
-import HR_tizimi.dto.WorkTimeScheduleDTO;
+import HR_tizimi.dto.*;
 import HR_tizimi.service.WorkTimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -48,20 +45,9 @@ public class WorkTimeController {
         return workTimeService.getAllHistory();
     }
 
-    @GetMapping("/admin/get/week/history")
-    public List<WorkTimeHistoryDTO> getWeekHistory(
-            @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
-            @RequestParam("endDate")   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate
-    ) {
-        return workTimeService.getWeekHistory(startDate, endDate);
-    }
-
-    @GetMapping("/admin/get/month/history")
-    public List<WorkTimeHistoryDTO> getMonthHistory(
-            @RequestParam("year") Integer year,
-            @RequestParam("month") Integer month
-    ) {
-        return workTimeService.getMonthHistory(year, month);
+    @GetMapping("/admin/get/interval/history")
+    public List<WorkTimeHistoryDTO> getIntervalHistory(@RequestBody IntervalDTO interval) {
+        return workTimeService.getIntervalHistory(interval);
     }
 
     @PutMapping("/user/worktime")

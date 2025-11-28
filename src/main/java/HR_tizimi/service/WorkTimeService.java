@@ -1,10 +1,7 @@
 package HR_tizimi.service;
 
 import HR_tizimi.config.CustomUserDetails;
-import HR_tizimi.dto.ApiResponse;
-import HR_tizimi.dto.WorkTimeDisruptionDTO;
-import HR_tizimi.dto.WorkTimeHistoryDTO;
-import HR_tizimi.dto.WorkTimeScheduleDTO;
+import HR_tizimi.dto.*;
 import HR_tizimi.entity.ProfileEntity;
 import HR_tizimi.entity.WorkTimeDisruptionEntity;
 import HR_tizimi.entity.WorkTimeHistoryEntity;
@@ -116,25 +113,8 @@ public class WorkTimeService {
         return dtoList;
     }
 
-    public List<WorkTimeHistoryDTO> getWeekHistory(LocalDateTime startDate, LocalDateTime endDate) {
-        Optional<List<WorkTimeHistoryEntity>> optional = workTimeHistoryRepository.getWeekHistoryList(startDate, endDate);
-        if (optional.isEmpty()) {
-            return null;
-        }
-
-        List<WorkTimeHistoryEntity> entityList = optional.get();
-
-        List<WorkTimeHistoryDTO> dtoList = new LinkedList<>();
-        for (WorkTimeHistoryEntity entity : entityList) {
-            WorkTimeHistoryDTO dto = workTimeMapper.toWorkTimeHistoryDTO(entity);
-            dtoList.add(dto);
-        }
-
-        return dtoList;
-    }
-
-    public List<WorkTimeHistoryDTO> getMonthHistory(Integer year, Integer month) {
-        Optional<List<WorkTimeHistoryEntity>> optional = workTimeHistoryRepository.getMonthHistoryList(year, month);
+    public List<WorkTimeHistoryDTO> getIntervalHistory(IntervalDTO interval) {
+        Optional<List<WorkTimeHistoryEntity>> optional = workTimeHistoryRepository.getWeekHistoryList(interval.getStartDate(), interval.getEndDate());
         if (optional.isEmpty()) {
             return null;
         }

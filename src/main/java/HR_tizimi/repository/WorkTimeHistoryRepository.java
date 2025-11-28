@@ -21,7 +21,5 @@ public interface WorkTimeHistoryRepository extends JpaRepository<WorkTimeHistory
             "w.createdDate >= :startDate AND w.createdDate <= :endDate ORDER BY w.createdDate ")
     Optional<List<WorkTimeHistoryEntity>> getWeekHistoryList(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
 
-    @Query("SELECT w FROM WorkTimeHistoryEntity w WHERE " +
-            "FUNCTION('YEAR', w.createdDate) = :year AND FUNCTION('MONTH', w.createdDate) = :month ORDER BY w.createdDate")
-    Optional<List<WorkTimeHistoryEntity>> getMonthHistoryList(@Param("year") Integer year, @Param("month") Integer month);
+
 }

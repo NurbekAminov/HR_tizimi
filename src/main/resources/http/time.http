@@ -1,13 +1,10 @@
-### TOKEN
-@token = Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInVzZXJuYW1lIjoiQWxpMDAxIiwic3ViIjoiQWxpMDAxIiwiaWF0IjoxNzY0MzE1MzM5LCJleHAiOjE3NjQ0MDE3Mzl9.rx4Q0tNNSfWojP8d64a6hHdGiW8f0VnWXVq8zghxbXFrLfVry6Qop5MwSHUfHiTs8GdjfqbVTmuSjUjrtL3j8g
-
 ###Create Schedule
 POST http://localhost:8080/work-time/admin/create/schedule
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInVzZXJuYW1lIjoiQWxpMDAxIiwic3ViIjoiQWxpMDAxIiwiaWF0IjoxNzY0MzE5Nzc5LCJleHAiOjE3NjQ0MDYxNzl9.DeuwRt44_r61RQJB3zczpnCHqjYLv2OQZC2kKf0Z-QDkRjxP0tMrII6CIbdmXlrrtcq7ZpOIAFnnjGpI0NJkyw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInVzZXJuYW1lIjoiQWxpMDAxIiwic3ViIjoiQWxpMDAxIiwiaWF0IjoxNzY0MzIyODIyLCJleHAiOjE3NjQ0MDkyMjJ9.J6n0NXGiEq0VSCCfOvFKoOsfZE_GiZ_CJYjT4oSl8edUBe4IU-tpx1sRTJeVeR385zXTWgcPknVfHvoI_llg9A
 Content-Type: application/json
 
 {
-  "profileId": 6,
+  "profileId": 7,
   "inputTime": "2025-02-01T10:00:00",
   "outputTime": "2025-02-01T19:00:00"
 }
@@ -18,15 +15,15 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInVzZXJuY
 
 
 
-### Update Schedule //todo
+### Update Schedule
 PUT http://localhost:8080/work-time/admin/update/schedule
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInVzZXJuYW1lIjoiQWxpMDAxIiwic3ViIjoiQWxpMDAxIiwiaWF0IjoxNzY0MzE2MDc5LCJleHAiOjE3NjQ0MDI0Nzl9.R-WmWcxTBzfyJ6ZImdM3vz8bJTO79ogf_jGmH-sr4gxQBP02mQ5APBUqf6roR6fn4ZOxaLmHuXlvUUDBT30cDw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInVzZXJuYW1lIjoiQWxpMDAxIiwic3ViIjoiQWxpMDAxIiwiaWF0IjoxNzY0MzIzMDkxLCJleHAiOjE3NjQ0MDk0OTF9._fgSnQc-YsVkYR6EnxEAA-lXJIhv3L5oarceVvf4QrY7pg_gUdEqag14Px8tPyj0JAfgZG2SugGQ78xRyqyH9Q
 Content-Type: application/json
 
 {
-  "profileId": 2,
-  "startTime": "2025-02-01T09:00:00",
-  "endTime": "2025-02-01T18:00:00"
+  "profileId": 7,
+  "inputTime": "2025-02-01T09:00:00",
+  "outputTime": "2025-02-01T18:00:00"
 }
 
 
@@ -54,18 +51,16 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInVzZXJuY
 
 
 
-### Get Week History
-GET http://localhost:8080/work-time/admin/get/week/history?startDate=2025-02-01T00:00:00&endDate=2025-02-07T23:59:59
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInVzZXJuYW1lIjoiQWxpMDAxIiwic3ViIjoiQWxpMDAxIiwiaWF0IjoxNzY0MzIwMDY0LCJleHAiOjE3NjQ0MDY0NjR9.n288rxkwxSJsMGPWvtdXZ_kjCMe3gG7XNHtcNS33vXhQCreuUskvnENfy18UP1yeThgY8TjbIBlkqARUWcELbA
+### Get interval History
+GET http://localhost:8080/work-time/admin/get/interval/history
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInVzZXJuYW1lIjoiQWxpMDAxIiwic3ViIjoiQWxpMDAxIiwiaWF0IjoxNzY0MzI0MDE4LCJleHAiOjE3NjQ0MTA0MTh9.Fy4OJPZrlamBDKSE3pJPBfuIyEla7IB6QcaXq-zyPHKabfzShM4tGKw8h3TbMtjs4F-Y8w_39ILSO5ktqq-sYA
+Content-Type: application/json
 
-
-
-### Get Month History
-GET http://localhost:8080/work-time/admin/get/month/history?year=2025&month=2
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9BRE1JTiIsInVzZXJuYW1lIjoiQWxpMDAxIiwic3ViIjoiQWxpMDAxIiwiaWF0IjoxNzY0MzIwMDY0LCJleHAiOjE3NjQ0MDY0NjR9.n288rxkwxSJsMGPWvtdXZ_kjCMe3gG7XNHtcNS33vXhQCreuUskvnENfy18UP1yeThgY8TjbIBlkqARUWcELbA
-
-
+{
+  "startDate": "2025-02-01T09:00:00",
+  "endDate": "2025-12-01T18:00:00"
+}
 
 ### Profile Work Time
 PUT http://localhost:8080/work-time/user/worktime
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwidXNlcm5hbWUiOiJUb3NoMDAyIiwic3ViIjoiVG9zaDAwMiIsImlhdCI6MTc2NDMyMDAwMCwiZXhwIjoxNzY0NDA2NDAwfQ.cUgY3BIwUoe4KSNqbtVvBYl1jcW_jr2FOHSAYmJj7LXw3QxdYMFCholi67mBSGva1twSz2h-w5qeiPVOlsbHMw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwidXNlcm5hbWUiOiJUb3NoMDAzIiwic3ViIjoiVG9zaDAwMyIsImlhdCI6MTc2NDMyMjg5NywiZXhwIjoxNzY0NDA5Mjk3fQ.VzAoRy2B9MAbwESEmhfHDLY1nEgd0w2DpmbY11CXZmtm6oGoxiRbQ4BKAf3XI2K_zqqugUw4zobRVmYgKKxSbw
