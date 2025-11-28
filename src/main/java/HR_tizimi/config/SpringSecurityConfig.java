@@ -5,7 +5,6 @@ import HR_tizimi.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -34,6 +33,12 @@ public class SpringSecurityConfig {
     public static final String[] AUTH_WHITELIST = {
             "/auth/registration",
             "/auth/login",
+
+            // Swagger
+            "/swagger-ui.html",
+            "/swagger-ui/**",
+            "/v3/api-docs",
+            "/v3/api-docs/**"
     };
 
     @Bean
@@ -56,6 +61,7 @@ public class SpringSecurityConfig {
                     .requestMatchers("/branch", "/branch/**").hasAnyRole("ADMIN")
                     .requestMatchers("/position", "/position/**").hasAnyRole("ADMIN")
                     .requestMatchers("/vacation/admin/**").hasAnyRole("ADMIN")
+                    .requestMatchers("/work-time/admin/**").hasAnyRole("ADMIN")
                     .anyRequest()
                     .authenticated();
         }).addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
