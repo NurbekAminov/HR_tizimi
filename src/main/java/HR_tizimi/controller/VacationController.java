@@ -30,7 +30,7 @@ public class VacationController {
 
     @PutMapping(value = "/admin/update/name")
     public ResponseEntity<ApiResponse> updateName(@RequestBody VacationDTO dto) {
-        return ResponseEntity.ok().body(vacationService.updateName(dto));
+        return ResponseEntity.ok().body(vacationService.update(dto));
     }
 
     @PutMapping(value = "/admin/update/status")

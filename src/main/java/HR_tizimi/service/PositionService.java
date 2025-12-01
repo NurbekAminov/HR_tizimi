@@ -40,7 +40,7 @@ public class PositionService {
 
         dto.setId(entity.getId());
         dto.setPrtId(entity.getPrtId());
-        dto.setCreatedDate(dto.getCreatedDate());
+        dto.setCreatedDate(entity.getCreatedDate());
 
         return dto;
     }

@@ -50,7 +50,7 @@ public class VacationService {
 
         dto.setId(entity.getId());
         dto.setPrtId(entity.getPrtId());
-        dto.setCreatedDate(dto.getCreatedDate());
+        dto.setCreatedDate(entity.getCreatedDate());
 
         return dto;
     }
@@ -72,19 +72,29 @@ public class VacationService {
         return dtoList;
     }
 
-    public ApiResponse updateName(VacationDTO dto){
+    public VacationDTO getById(Integer id) {
+        VacationEntity entity = vacationRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Topilmadi"));
+        VacationDTO dto = new VacationDTO();
+        dto.setId(entity.getId());
+        dto.setName(entity.getName());
+        dto.setBalance(entity.getBalance());
+        return dto;
+    }
+
+    public ApiResponse update(VacationDTO dto){
         Optional<VacationEntity> byId = vacationRepository.findByVacationId(dto.getId());
         if (byId.isEmpty()){
             return new ApiResponse(false, "Vacation not found");
         }
 
-        Optional<VacationEntity> newName = vacationRepository.findByVacationName(dto.getName());
+        Optional<VacationEntity> newName = vacationRepository.findByVacationName(dto.getId(), dto.getName());
         if (newName.isPresent()){
             return new ApiResponse(false, "This name already exist");
         }
 
         CustomUserDetails customUserDetails = SpringSecurityUtil.getCurrentUser();
-        int effectRows = vacationRepository.update(dto.getId(), dto.getName(), customUserDetails.getProfile().getId());
+        int effectRows = vacationRepository.update(dto.getId(), dto.getName(), dto.getBalance(), customUserDetails.getProfile().getId());
         if (effectRows == 0){
             return new ApiResponse(false, "Vacation Not Updated");
         }

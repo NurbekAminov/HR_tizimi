@@ -15,14 +15,16 @@ import java.util.Optional;
 public interface VacationRepository extends JpaRepository<VacationEntity, Integer> {
     @Query("from VacationEntity p where p.name =:name and p.visible = true ")
     Optional<VacationEntity> findByVacationName(@Param("name") String name);
+    @Query("from VacationEntity p where p.name =:name and p.id !=:id and p.visible = true ")
+    Optional<VacationEntity> findByVacationName(@Param("id") Integer id, @Param("name") String name);
 
     @Query("from VacationEntity p where p.id =:id and p.visible = true ")
     Optional<VacationEntity> findByVacationId(@Param("id") Integer id);
 
     @Transactional
     @Modifying
-    @Query("update VacationEntity p set p.name =:name, p.prtId =:prtId where p.id =:id")
-    int update(@Param("id") Integer id, @Param("name") String name, @Param("prtId") Integer prtId);
+    @Query("update VacationEntity p set p.name =:name, p.balance =:balance, p.prtId =:prtId where p.id =:id")
+    int update(@Param("id") Integer id, @Param("name") String name, @Param("balance") Integer balance, @Param("prtId") Integer prtId);
 
     @Transactional
     @Modifying
